@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      button {
+        width: 120px;
+        height: 40px;
+        font-size: 20px;
+        background-color: yellow;
+        color: blue;
+        font-family: cursive;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <center><h2>Organiza las palabras:</h2></center>
+    <center>
+      <table>
+        <tr id="up">
+
+        </tr>
+      </table>
+    </center>
+
+    <center>
+      <p>
+        <img
+          height="300"
+          widht="300"
+          src="" id="a"
+        />
+      </p>
+    </center>
+
+    <center>
+      <table>
+        <tr id="down">
+  
+        </tr>
+      </table>
+    </center>
+<script>
+const a=document.getElementById("a")
+a.src="https://img.freepik.com/vector-premium/nino-feliz-dibujos-animados-levantando-manos_353337-803.jpg"
+var frase=["The dog wasn't barking when I arrived home."]
+//const array=['We','go','to', 'bed', 'early.']  
+const array=frase[0].split(" ")
+let lista=array.slice()
+function ordenAleatorio() {
+  return Math.random() - 0.5;
+}
+// Ordenar el array de forma aleatoria
+lista.sort(ordenAleatorio);
+
+const up=document.getElementById('up')
+const down=document.getElementById('down')
+let y=''
+for(let i=0;i<lista.length;i++){
+ y=y+'<td><button></button></td>'
+}
+up.innerHTML=y
+down.innerHTML=y
+
+const b=document.querySelectorAll('button')
+for(let i=0;i<lista.length;i++){
+  b[i].innerHTML=lista[i]
+}
+
+let z
+b.forEach((boton) => {
+  boton.addEventListener('click', (event) => {
+    const botonClicado = event.target;
+    const posicion = Array.from(b).indexOf(botonClicado);
+    if(posicion<lista.length){
+      z=posicion
+    }
+    else{
+      //console.log(z)
+      //console.log(posicion)
+      let x=array.indexOf(b[z].textContent)
+      //console.log(x)
+      if((posicion-lista.length)===x){
+        //console.log('esta bien')
+        b[posicion].innerHTML=b[z].textContent
+        b[z].innerHTML=''
+      }else{
+        //console.log('no esta bien')
+      }
+    }
+    //console.log(`El botón ${botonClicado.textContent} ha sido clicado en la posición ${posicion}.`);
+  });
+});
+    </script>
+  </body>
+</html>
